@@ -6,13 +6,17 @@ import os
 
 from PIL import Image
 from pyzbar.pyzbar import decode
-data = decode(Image.open('img2.jpg'))
-print(data[0].data.decode('UTF-8'))
 
-# for file in os.listdir():
-#     value = read_qr_code(file)
-#     print(value)
-#     old_name=file
-#     new_name=value+".jpg"
-#     os.rename(old_name,new_name)
+path ="D:\PENGOLAHAN PETA ST2023\py\petamentah"
 
+os.chdir(path)
+dir_list = os.listdir(path)
+
+for file in os.listdir():
+    try:        
+        data = decode(Image.open(file))
+        new_name=data[0].data.decode('UTF-8')+".jpg"
+        old_name=file
+        os.rename(old_name,new_name)
+    except:
+        pass
